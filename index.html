@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos Proposal — community.com 様 自社メディア構築のご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:#12213D;
+    --blue-mid:#2C4066;
+    --blue-line:rgba(140,168,214,0.28);
+    --bg-light:#F4F6FB;
+    --bg-card:#FFFFFF;
+    --accent-orange:#EE6C4D;
+    --accent-yellow:#FFC857;
+    --text-dark:#101826;
+    --text-sub:#5A6B85;
+    --line-hair:#D7DEEA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    color:var(--text-dark);
+    background:var(--bg-light);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:var(--blue-deep);
+    color:#fff;
+    overflow:hidden;
+    padding:120px 0 100px;
+    background-image:
+      repeating-linear-gradient(0deg, var(--blue-line) 0px, var(--blue-line) 1px, transparent 1px, transparent 48px),
+      repeating-linear-gradient(90deg, var(--blue-line) 0px, var(--blue-line) 1px, transparent 1px, transparent 48px);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-120px; right:-120px;
+    width:420px; height:420px;
+    border:1px dashed rgba(255,255,255,0.18);
+    border-radius:50%;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-160px; left:-100px;
+    width:320px; height:320px;
+    border:1px solid rgba(255,255,255,0.12);
+    transform:rotate(20deg);
+  }
+  .hero-inner{position:relative;z-index:2;}
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    color:var(--accent-yellow);
+    border:1px solid rgba(255,200,87,0.5);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:36px;
+  }
+  .badge::before{
+    content:"";
+    width:6px;height:6px;
+    background:var(--accent-yellow);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(32px,5vw,58px);
+    font-weight:900;
+    line-height:1.4;
+    letter-spacing:0.01em;
+    max-width:760px;
+  }
+  .hero h1 span{
+    color:var(--accent-orange);
+  }
+  .hero p.lead{
+    margin-top:28px;
+    max-width:560px;
+    font-size:16px;
+    color:rgba(255,255,255,0.78);
+  }
+  .dim-line{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:rgba(255,255,255,0.55);
+  }
+  .dim-line .bar{
+    position:relative;
+    width:180px;height:1px;
+    background:rgba(255,255,255,0.4);
+  }
+  .dim-line .bar::before,.dim-line .bar::after{
+    content:"";
+    position:absolute;
+    top:-4px;
+    width:1px;height:9px;
+    background:rgba(255,255,255,0.4);
+  }
+  .dim-line .bar::before{left:0;}
+  .dim-line .bar::after{right:0;}
+  .hero-target{
+    margin-top:60px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:rgba(255,255,255,0.45);
+  }
+  .hero-target b{color:#fff;font-weight:500;}
+
+  /* ===== SECTION TITLE ===== */
+  .sec{padding:96px 0;}
+  .sec-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    color:var(--accent-orange);
+    margin-bottom:14px;
+    display:block;
+  }
+  .sec-title{
+    font-size:clamp(24px,3.4vw,34px);
+    font-weight:900;
+    color:var(--text-dark);
+    max-width:680px;
+    line-height:1.6;
+  }
+  .sec-sub{
+    margin-top:18px;
+    color:var(--text-sub);
+    max-width:600px;
+    font-size:15px;
+  }
+
+  /* ===== UNDERSTANDING SPEC SHEET ===== */
+  .spec-wrap{
+    background:var(--bg-light);
+    border-top:1px solid var(--line-hair);
+    border-bottom:1px solid var(--line-hair);
+  }
+  .spec-sheet{
+    margin-top:48px;
+    background:var(--bg-card);
+    border:1px solid var(--line-hair);
+    box-shadow:0 20px 40px -30px rgba(18,33,61,0.35);
+  }
+  .spec-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--blue-deep);
+    color:#fff;
+    padding:16px 24px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+  }
+  .spec-head span.dot-row{display:flex;gap:6px;}
+  .spec-head .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.35);}
+  .spec-body{
+    padding:36px;
+  }
+  .spec-row{
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:20px;
+    padding:18px 0;
+    border-bottom:1px dashed var(--line-hair);
+  }
+  .spec-row:last-child{border-bottom:none;}
+  .spec-key{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--text-sub);
+    letter-spacing:0.06em;
+    padding-top:2px;
+  }
+  .spec-val{font-size:15px;color:var(--text-dark);}
+  .spec-val b{color:var(--accent-orange);font-weight:700;}
+
+  /* ===== VALUE CARDS ===== */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    margin-top:52px;
+  }
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--line-hair);
+    padding:32px 26px;
+    position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 24px 40px -28px rgba(18,33,61,0.4);
+  }
+  .card .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--accent-orange);
+    letter-spacing:0.1em;
+    display:block;
+    margin-bottom:18px;
+  }
+  .card h3{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:12px;
+    color:var(--text-dark);
+  }
+  .card p{
+    font-size:13.5px;
+    color:var(--text-sub);
+  }
+  .card::after{
+    content:"";
+    position:absolute;
+    top:20px;right:20px;
+    width:10px;height:10px;
+    border-top:1px solid var(--line-hair);
+    border-right:1px solid var(--line-hair);
+  }
+
+  /* CMS diagram */
+  .cms-diagram{
+    margin-top:60px;
+    background:var(--blue-deep);
+    padding:48px 32px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    flex-wrap:wrap;
+    background-image:repeating-linear-gradient(0deg, var(--blue-line) 0px, var(--blue-line) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, var(--blue-line) 0px, var(--blue-line) 1px, transparent 1px, transparent 40px);
+  }
+  .cms-box{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:22px 26px;
+    min-width:160px;
+    text-align:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+  }
+  .cms-box b{
+    display:block;
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:15px;
+    font-weight:700;
+    margin-bottom:6px;
+    color:var(--accent-yellow);
+  }
+  .cms-arrow{
+    font-family:'JetBrains Mono',monospace;
+    color:rgba(255,255,255,0.5);
+    padding:0 18px;
+    font-size:18px;
+  }
+
+  /* ===== SCHEDULE ===== */
+  .timeline{
+    margin-top:56px;
+    position:relative;
+    padding-left:28px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:6px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line-hair);
+  }
+  .t-item{
+    position:relative;
+    padding:0 0 40px 26px;
+  }
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left:-8px; top:2px;
+    width:13px;height:13px;
+    background:var(--bg-light);
+    border:2px solid var(--accent-orange);
+    border-radius:50%;
+  }
+  .t-day{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--accent-orange);
+    letter-spacing:0.1em;
+    margin-bottom:6px;
+    display:block;
+  }
+  .t-title{font-size:17px;font-weight:700;margin-bottom:6px;}
+  .t-desc{font-size:13.5px;color:var(--text-sub);max-width:560px;}
+
+  /* ===== CLOSING ===== */
+  .closing{
+    background:var(--blue-deep);
+    color:#fff;
+    padding:110px 0;
+    position:relative;
+    overflow:hidden;
+    background-image:repeating-linear-gradient(0deg, var(--blue-line) 0px, var(--blue-line) 1px, transparent 1px, transparent 48px),
+      repeating-linear-gradient(90deg, var(--blue-line) 0px, var(--blue-line) 1px, transparent 1px, transparent 48px);
+  }
+  .closing::before{
+    content:"";
+    position:absolute;
+    right:-140px;bottom:-140px;
+    width:360px;height:360px;
+    border:1px dashed rgba(255,255,255,0.15);
+    border-radius:50%;
+  }
+  .closing-inner{position:relative;z-index:2;text-align:center;}
+  .closing h2{
+    font-size:clamp(26px,4vw,40px);
+    font-weight:900;
+    line-height:1.6;
+  }
+  .closing h2 span{color:var(--accent-yellow);}
+  .closing p{
+    margin:22px auto 0;
+    max-width:560px;
+    color:rgba(255,255,255,0.75);
+    font-size:15px;
+  }
+  .cta-btn{
+    display:inline-block;
+    margin-top:44px;
+    background:var(--accent-orange);
+    color:#fff;
+    font-weight:700;
+    padding:18px 44px;
+    font-size:15px;
+    letter-spacing:0.04em;
+    box-shadow:0 20px 40px -18px rgba(238,108,77,0.7);
+    transition:transform .2s ease;
+  }
+  .cta-btn:hover{transform:translateY(-3px);}
+  .closing-meta{
+    margin-top:32px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:rgba(255,255,255,0.4);
+    letter-spacing:0.06em;
+  }
+
+  footer{
+    background:#0D1826;
+    color:rgba(255,255,255,0.4);
+    text-align:center;
+    padding:28px 0;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+  }
+
+  @media (max-width:860px){
+    .cards{grid-template-columns:1fr 1fr;}
+    .spec-row{grid-template-columns:1fr;gap:6px;}
+  }
+  @media (max-width:600px){
+    .hero{padding:90px 0 70px;}
+    .sec{padding:70px 0;}
+    .cards{grid-template-columns:1fr;}
+    .cms-diagram{flex-direction:column;gap:16px;padding:36px 20px;}
+    .cms-arrow{transform:rotate(90deg);padding:0;}
+    .spec-body{padding:24px;}
+    .dim-line .bar{width:100px;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="badge mono">KAIROS — PROPOSAL DOCUMENT</span>
+      <h1>コピーではない。<br>これは<span>精度</span>という仕事です。</h1>
+      <p class="lead">既存サイトのフォントサイズ・行間・挙動を1pxまで特定し、STUDIO上でCMS（コレクション＋モデル）として再構築する。community.com様の自社メディア構築、Kairosがそのまま引き受けます。</p>
+      <div class="dim-line">
+        <span class="mono">FONT-SIZE</span>
+        <span class="bar"></span>
+        <span class="mono">LINE-HEIGHT</span>
+        <span class="bar"></span>
+        <span class="mono">±0px</span>
+      </div>
+      <div class="hero-target">FOR : <b>community.com</b> / SCOPE : <b>TOP・カテゴリー一覧・記事個別（PC/SP 全6画面）</b> / BUILD : <b>STUDIO CMS</b></div>
+    </div>
+  </section>
+
+  <!-- UNDERSTANDING -->
+  <section class="sec spec-wrap">
+    <div class="wrap">
+      <span class="sec-tag mono">01 / UNDERSTANDING</span>
+      <h2 class="sec-title">この案件で問われているのは「デザイン力」ではなく「再現精度」だと理解しています。</h2>
+      <p class="sec-sub">ワイヤーもデザイン案も既にある。求められているのは、既存サイトのCSS値を正確に読み取り、STUDIOのCMS機能で違和感なく再構築する実装力です。私たちは、これを"仕様書"として扱います。</p>
+
+      <div class="spec-sheet">
+        <div class="spec-head">
+          <span>SPEC_SHEET.md</span>
+          <span class="dot-row"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+        </div>
+        <div class="spec-body">
+          <div class="spec-row">
+            <div class="spec-key mono">SCOPE</div>
+            <div class="spec-val">トップページ／カテゴリー別記事一覧／記事個別ページ　× PC・SP ＝ <b>合計6画面</b></div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-key mono">CONSTRAINT</div>
+            <div class="spec-val">既存サイトのデザイン完全コピー＋一部文言変更。<b>フォントサイズ・行間の完全一致</b>が検収基準。</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-key mono">SYSTEM</div>
+            <div class="spec-val">STUDIO CMSにて<b>コレクション＋モデル設計</b>が必須。記事・カテゴリーの動的表示に対応。</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-key mono">TIMELINE</div>
+            <div class="spec-val">発注から<b>5日納品</b>／修正対応は<b>2日以内</b>。検収完了までの逆算スケジュールが前提。</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-key mono">COMMUNICATION</div>
+            <div class="spec-val">Slackでのリアルタイムやり取りを希望。素材・文言未確定分は<b>制作と並行して相談</b>が必要。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE -->
+  <section class="sec">
+    <div class="wrap">
+      <span class="sec-tag mono">02 / WHAT KAIROS PROVIDES</span>
+      <h2 class="sec-title">Kairosが提供する5つの価値</h2>
+      <p class="sec-sub">「似ている」で止めない。DevToolsでの数値抽出から、CMS設計、短納期での納品体制まで、この案件の要求水準にそのまま応えます。</p>
+
+      <div class="cards">
+        <div class="card">
+          <span class="num mono">01</span>
+          <h3>ピクセル精度の実装</h3>
+          <p>既存サイトのHTML／CSSを解析し、フォントサイズ・行間・余白をコードレベルで抽出。誤差を仕様として管理します。</p>
+        </div>
+        <div class="card">
+          <span class="num mono">02</span>
+          <h3>STUDIO CMS設計</h3>
+          <p>コレクション＋モデルによる記事・カテゴリー構造を設計。運用担当者が更新しやすい入力項目にも配慮します。</p>
+        </div>
+        <div class="card">
+          <span class="num mono">03</span>
+          <h3>PC/SP 全画面レスポンシブ</h3>
+          <p>トップ・一覧・個別、計6画面をブレイクポイントごとに個別調整。表示崩れゼロを目指します。</p>
+        </div>
+        <div class="card">
+          <span class="num mono">04</span>
+          <h3>5日納品の逆算体制</h3>
+          <p>解析→実装→レスポンシブ→検収修正までを日単位で管理し、修正対応も2日以内でクローズします。</p>
+        </div>
+        <div class="card">
+          <span class="num mono">05</span>
+          <h3>Slackでの伴走対応</h3>
+          <p>素材・文言未確定の箇所は制作と並行してSlackで即相談。手戻りを最小化します。</p>
+        </div>
+      </div>
+
+      <div class="cms-diagram">
+        <div class="cms-box">
+          <b>Collection</b>
+          記事 / カテゴリー
+        </div>
+        <div class="cms-arrow">→</div>
+        <div class="cms-box">
+          <b>Model</b>
+          フィールド設計
+        </div>
+        <div class="cms-arrow">→</div>
+        <div class="cms-box">
+          <b>Template</b>
+          一覧・個別ページ
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="sec" style="background:var(--bg-card);border-top:1px solid var(--line-hair);">
+    <div class="wrap">
+      <span class="sec-tag mono">03 / SCHEDULE</span>
+      <h2 class="sec-title">5日間の進め方イメージ</h2>
+      <p class="sec-sub">短納期でも検収品質を落とさないための、逆算スケジュールです。</p>
+
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-day mono">DAY 0 — KICKOFF</span>
+          <div class="t-title">契約・素材共有・対象サイト確認</div>
+          <div class="t-desc">コピー対象サイトと変更点、既存の画像・文章素材をSlackで共有いただき、認識をすり合わせます。</div>
+        </div>
+        <div class="t-item">
+          <span class="t-day mono">DAY 1-2 — ANALYZE</span>
+          <div class="t-title">構造解析・CSS数値抽出</div>
+          <div class="t-desc">既存サイトのフォントサイズ・行間・余白をDevToolsで特定し、CMS（コレクション＋モデル）を設計します。</div>
+        </div>
+        <div class="t-item">
+          <span class="t-day mono">DAY 2-3 — BUILD PC</span>
+          <div class="t-title">トップ／一覧／個別ページ実装（PC）</div>
+          <div class="t-desc">STUDIO上で全3ページ・PC版を構築。CMSの動的表示まで含めて実装します。</div>
+        </div>
+        <div class="t-item">
+          <span class="t-day mono">DAY 3-4 — BUILD SP</span>
+          <div class="t-title">スマホ版レスポンシブ対応</div>
+          <div class="t-desc">全ページのSP版を調整。表示崩れ・タップ領域まで確認します。</div>
+        </div>
+        <div class="t-item">
+          <span class="t-day mono">DAY 4-5 — REVIEW</span>
+          <div class="t-title">検収・修正対応（2日以内）</div>
+          <div class="t-desc">誤植・フォント差異・CMS挙動をチェックリスト化し、修正依頼には2日以内で対応、納品完了とします。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="wrap closing-inner">
+      <h2>この<span>仕様</span>、Kairosなら再現できます。</h2>
+      <p>フォントサイズも、行間も、CMSの挙動も。曖昧さを残さない実装で、community.com様の自社メディアを5日で形にします。</p>
+      <a class="cta-btn mono" href="#">応募して詳しく相談する →</a>
+      <div class="closing-meta mono">KAIROS / WEB制作・システム開発チーム — PROPOSAL FOR community.com</div>
+    </div>
+  </section>
+
+  <footer>© KAIROS — WEB & SYSTEM DEVELOPMENT TEAM</footer>
+
+</body>
+</html>
